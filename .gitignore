@@ -1,0 +1,11 @@
+/build/
+/.cache/
+__pycache__/
+*.py[cod]
+*.o
+*.ko
+*.a
+*.elf
+*.map
+.env
+*.pem

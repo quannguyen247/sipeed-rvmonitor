@@ -1,0 +1,19 @@
+sipeed-rvmonitor
+Copyright 2026 Nguyen Dong Quan
+
+The original monitor, shared protocol, PID helpers, build scripts, tests and
+documentation are licensed under Apache-2.0 unless explicitly marked otherwise.
+
+Kernel driver patch directories retain their upstream licenses:
+  kernel/npu: GPL-2.0-or-later; Cvitek Co., Ltd. 2019-2021.
+  kernel/remoteproc: GPL-2.0-only; STMicroelectronics 2015 and vendor contributors.
+These patches are not relicensed under Apache-2.0.
+
+support/freertos/src/start.S adapts the SDK startup under MIT, preserving
+the Amazon.com, Inc. or affiliates copyright (2020) and modification notice.
+The external FreeRTOS kernel 10.4.6 and port are MIT (Amazon, 2021).
+External BSP/SDK sources and libraries retain their own copyright and licenses;
+the repository does not redistribute the NPU SDK or tensor self-test engine.
+
+Sipeed, Sophgo, Cvitek, THead and FreeRTOS names identify supported components.
+This is an independent community project, not an official vendor release.
