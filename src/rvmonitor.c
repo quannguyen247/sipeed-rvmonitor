@@ -28,7 +28,7 @@
 #define RTOS_CTL "/opt/rvnano/freertos/rtos_ctl"
 #define LINUX_PID "/opt/rvnano/freertos/linux_pid"
 static volatile sig_atomic_t stopped;
-static int loaded_here, terminal_active, lock_fd=-1, quit_key;
+static int loaded_here, terminal_active, lock_fd=-1, test_lock_fd=-1, quit_key;
 static struct termios saved_terminal;
 static volatile struct rv_shared *shared;
 struct snapshot {
@@ -87,11 +87,12 @@ static void cleanup(void) {
         loaded_here=0;
     }
     if(lock_fd>=0){close(lock_fd);lock_fd=-1;}
+    if(test_lock_fd>=0){close(test_lock_fd);test_lock_fd=-1;}
 }
-static int lock_tool(void) {
-    lock_fd=open("/run/rvmonitor.lock",O_CREAT|O_RDWR|O_NOFOLLOW,0600);
-    if(lock_fd<0 || flock(lock_fd,LOCK_EX|LOCK_NB)){
-        fprintf(stderr,"Another rvmonitor is running, or /run lock is unavailable.\n");return 1;}
+static int lock_path(const char *path,int *fd,const char *message) {
+    *fd=open(path,O_CREAT|O_RDWR|O_NOFOLLOW|O_CLOEXEC,0600);
+    if(*fd<0 || flock(*fd,LOCK_EX|LOCK_NB)){
+        fprintf(stderr,"%s\n",message);return 1;}
     return 0;
 }
 static int ensure_npu(void) {
@@ -168,22 +169,36 @@ static double percent(uint64_t now,uint64_t old,uint64_t total,uint64_t oldtotal
     return 100.0*(inverse?1.0-(double)d/t:(double)d/t);
 }
 static void number(double n){if(n<0)printf("null");else printf("%.4f",n);}
+/* C0/NPU activity covers the last sample window; C1 job/sleep is a snapshot. */
+static const char *c0_state(double load) {
+    return load<0?"N/A":load>0?"Active":"Idle";
+}
+static const char *c1_state(const struct snapshot *s) {
+    if(!s->c1_valid)return "N/A";
+    if(s->c1_state==RV_RUN)return "Running";
+    return s->c1_sleep==2?"Sleep":"Idle";
+}
+static const char *npu_state(const struct snapshot *s,double load) {
+    return s->npu_active?"Busy":load<0?"N/A":load>0?"Busy":"Idle";
+}
 static void json_sample(const struct snapshot *s,double c0,double c1,double npu,double overhead) {
     printf("{\"monotonic_ns\":%"PRIu64",\"temperature_mC\":%ld,\"C0_percent\":",s->wall_ns,s->temperature_mC);number(c0);
     printf(",\"C1_percent\":");number(c1);printf(",\"NPU_command_busy_percent\":");number(npu);
     printf(",\"monitor_percent\":");number(overhead);
-    printf(",\"clock_Hz\":[%"PRIu64",%"PRIu64",%"PRIu64"],\"clock_enabled\":[%u,%u,%u],\"C1_state\":%u,\"C1_elapsed_ticks\":%"PRIu64",\"C1_idle_ticks\":%"PRIu64",\"NPU_jobs\":%"PRIu64",\"NPU_busy_ns\":%"PRIu64",\"NPU_counter_time_ns\":%"PRIu64",\"NPU_active\":%u,\"NPU_loaded\":%s,\"NPU_owned\":%s,\"memory_total_kB\":%ld,\"memory_available_kB\":%ld,\"memory_used_kB\":%ld,\"C1_sleep_mode\":%u}\n",
-           s->clock_hz[0],s->clock_hz[1],s->clock_hz[2],s->clock_enabled[0],s->clock_enabled[1],s->clock_enabled[2],s->c1_state,s->c1_elapsed,s->c1_idle,s->npu_jobs,s->npu_busy,s->npu_time,s->npu_active,s->npu_loaded?"true":"false",loaded_here?"true":"false",s->memory_total_kB,s->memory_available_kB,s->memory_used_kB,s->c1_sleep);
+    printf(",\"clock_Hz\":[%"PRIu64",%"PRIu64",%"PRIu64"],\"clock_enabled\":[%u,%u,%u],\"C1_state\":%u,\"C1_elapsed_ticks\":%"PRIu64",\"C1_idle_ticks\":%"PRIu64",\"NPU_jobs\":%"PRIu64",\"NPU_busy_ns\":%"PRIu64",\"NPU_counter_time_ns\":%"PRIu64",\"NPU_active\":%u,\"NPU_loaded\":%s,\"NPU_owned\":%s,\"memory_total_kB\":%ld,\"memory_available_kB\":%ld,\"memory_used_kB\":%ld,\"C1_sleep_mode\":%u,\"CPU0_state\":\"%s\",\"CPU1_state\":\"%s\",\"NPU_state\":\"%s\"}\n",
+           s->clock_hz[0],s->clock_hz[1],s->clock_hz[2],s->clock_enabled[0],s->clock_enabled[1],s->clock_enabled[2],s->c1_state,s->c1_elapsed,s->c1_idle,s->npu_jobs,s->npu_busy,s->npu_time,s->npu_active,s->npu_loaded?"true":"false",loaded_here?"true":"false",s->memory_total_kB,s->memory_available_kB,s->memory_used_kB,s->c1_sleep,c0_state(c0),c1_state(s),npu_state(s,npu));
 }
 static void row(const char *label,double load,uint64_t hz,const char *state,int color) {
-    printf("%-22s ",label);
+    printf("%-22s  ",label);
     if(color)printf("\033[36m");
     putchar('[');int bars=load<0?0:(int)(load/5+.5);
     for(int i=0;i<20;i++)putchar(i<bars?'#':' ');
     printf("]");if(color)printf("\033[0m");
-    if(load<0)printf("   N/A  ");else printf(" %6.1f%% ",load);
-    if(hz)printf("%7.1f ",hz/1000000.0);else printf("    N/A ");
-    printf(" %s\n",state);
+    char value[32];if(load<0)snprintf(value,sizeof(value),"N/A");
+    else snprintf(value,sizeof(value),"%.1f%%",load);
+    printf(" %7s  ",value);
+    if(hz)printf("%8.1f  ",hz/1000000.0);else printf("%8s  ","N/A");
+    printf("%s\n",state);
 }
 static void display(const struct snapshot *s,double c0,double c1,double npu,int tty) {
     if(tty)printf("\033[H\033[1;36m");
@@ -192,11 +207,10 @@ static void display(const struct snapshot *s,double c0,double c1,double npu,int 
     struct utsname u;uname(&u);printf("\nLinux %s\n\n",u.release);
     if(s->temperature_mC>=0)printf("TEMP  %.1f C",s->temperature_mC/1000.0);else printf("TEMP  N/A");
     printf("    RAM USED  %.1f / %.1f MiB\n\n",s->memory_used_kB/1024.0,s->memory_total_kB/1024.0);
-    puts("CORE                   LOAD                         MHz*   STATE");
-    row("CPU1  C906 / Linux",c0,s->clock_hz[0],"Linux",tty);
-    const char *state=!s->c1_valid?"N/A":s->c1_sleep==2?"Sleep":s->c1_state==RV_RUN?"Run":"Idle";
-    row("CPU2  C906L / RTOS",c1,s->clock_hz[1],state,tty);
-    row("NPU   SG2002",npu,s->clock_hz[2],s->npu_active?"Busy":"Idle",tty);
+    printf("%-22s  %-22s %7s  %8s  %s\n","CORE","LOAD","%","MHz*","STATE");
+    row("CPU0  C906 / Linux",c0,s->clock_hz[0],c0_state(c0),tty);
+    row("CPU1  C906L / RTOS",c1,s->clock_hz[1],c1_state(s),tty);
+    row("NPU   SG2002",npu,s->clock_hz[2],npu_state(s,npu),tty);
     puts("\n* configured clock    q / Esc: exit    --help: commands");
     if(tty)printf("\033[J");
     fflush(stdout);
@@ -243,12 +257,14 @@ static int cpu_test(int c1) {
 static void usage(void) {
     puts("rvmonitor [--once | --samples N] [--json] [--interval MS]\n"
          "rvmonitor --nputest | --c0test | --c1test\n"
-         "Root required. Default refresh 1000 ms. CPU1=C0/Linux; CPU2=C1/FreeRTOS.\n"
+         "Root required. Default refresh 250 ms. CPU0=C0/Linux; CPU1=C1/FreeRTOS.\n"
+         "CPU tests can run in another terminal while the monitor is open.\n"
+         "One test at a time. Close the monitor before --nputest.\n"
          "Quit with q/Esc/Ctrl+C; unload only a driver this invocation loaded.\n"
          "Pre-existing/active NPU drivers are retained. No clock or voltage changes.");
 }
 int main(int argc,char **argv) {
-    unsigned interval=1000,limit=0;int json=0,test=0;
+    unsigned interval=250,limit=0;int json=0,test=0;
     for(int i=1;i<argc;i++) {
         if(!strcmp(argv[i],"--help") || !strcmp(argv[i],"-h")){usage();return 0;}
         else if(!strcmp(argv[i],"--once"))limit=1;
@@ -264,7 +280,11 @@ int main(int argc,char **argv) {
     }
     if(geteuid()){fprintf(stderr,"Run as root: sudo rvmonitor\n");return 1;}
     atexit(cleanup);signal(SIGINT,stop_signal);signal(SIGTERM,stop_signal);signal(SIGHUP,stop_signal);signal(SIGPIPE,stop_signal);
-    if(lock_tool())return 1;
+    if(test && lock_path("/run/rvmonitor-test.lock",&test_lock_fd,
+                         "Another rvmonitor test is running, or /run test lock is unavailable."))return 1;
+    /* CPU tests never own the NPU module and may run beside one observer. */
+    if((!test || test==1) && lock_path("/run/rvmonitor.lock",&lock_fd,
+       "Another monitor/NPU test is running. CPU tests may run alongside a monitor."))return 1;
     map_c1();
     if(test==2 || test==3)return cpu_test(test==3);
     if(ensure_npu())return 1;
