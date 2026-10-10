@@ -1,0 +1,15 @@
+[Unit]
+Description=FreeRTOS PID test firmware on isolated RVNano C906L
+After=local-fs.target systemd-modules-load.service
+ConditionPathExists=/lib/firmware/rvnano-freertos.elf
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/sbin/modprobe cvitek_remoteproc
+ExecStart=/usr/local/sbin/rvnano-freertos start
+ExecStop=/usr/local/sbin/rvnano-freertos stop
+TimeoutStartSec=10
+
+[Install]
+WantedBy=multi-user.target

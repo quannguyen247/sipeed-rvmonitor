@@ -7,7 +7,7 @@
 #define RV_SHARED_ADDR 0x8ff00000UL
 #define RV_SHARED_BYTES 0x100000UL
 #define RV_MAGIC 0x52565453u
-#define RV_VERSION 2u
+#define RV_VERSION 3u
 #define RV_MAX_SAMPLES 10000u
 #define RV_TIMER_HZ 25000000UL
 #define RV_PERIOD_TICKS 25000UL
@@ -26,6 +26,9 @@ struct rv_shared {
     /* Append only: retain the v1 sample offsets for archived benchmarks. */
     uint32_t telemetry_seq, telemetry_reserved;
     uint64_t elapsed_ticks, idle_ticks;
+    /* v3: an open WFI interval can be observed without waking this core. */
+    uint64_t boot_time, idle_since, timer_irqs, wake_irqs;
+    uint32_t sleep_mode, sleep_reserved;
 };
 _Static_assert(sizeof(struct rv_shared)<RV_SHARED_BYTES,"shared area overflow");
 static inline void rv_fence(void) { __asm__ volatile("fence rw,rw" ::: "memory"); }

@@ -1,0 +1,29 @@
+SPDX-License-Identifier: GPL-2.0-only
+Modifications: Copyright 2026 Nguyen Dong Quan
+Upstream: STMicroelectronics, 2015; existing license remains GPL-2.0-only.
+
+--- a/drivers/remoteproc/cvitek_remoteproc.c
++++ b/drivers/remoteproc/cvitek_remoteproc.c
+@@ -184,6 +184,14 @@
+ 	return rproc_elf_load_rsc_table(rproc, fw);
+ }
+ 
++/* FSBL may leave C906L executing a parked stub. Hold it before ELF load. */
++static int cvitek_rproc_prepare(struct rproc *rproc)
++{
++	struct cvitek_rproc *ddata = rproc->priv;
++
++	return reset_control_assert(ddata->sw_reset);
++}
++
+ static int cvitek_rproc_start(struct rproc *rproc)
+ {
+ 	struct cvitek_rproc *ddata = rproc->priv;
+@@ -261,6 +269,7 @@
+ }
+ 
+ static const struct rproc_ops cvitek_rproc_ops = {
++	.prepare = cvitek_rproc_prepare,
+ 	.kick = cvitek_rproc_kick,
+ 	.start = cvitek_rproc_start,
+ 	.stop = cvitek_rproc_stop,

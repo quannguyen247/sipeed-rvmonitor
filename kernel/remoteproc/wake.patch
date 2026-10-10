@@ -1,0 +1,74 @@
+SPDX-License-Identifier: GPL-2.0-only
+Modifications: Copyright 2026 Nguyen Dong Quan
+Upstream: STMicroelectronics, 2015; existing license remains GPL-2.0-only.
+
+--- a/drivers/remoteproc/cvitek_remoteproc.c
++++ b/drivers/remoteproc/cvitek_remoteproc.c
+@@ -44,6 +44,7 @@
+ 	struct workqueue_struct *workqueue;
+ 	struct work_struct vq_work;
+ 	uint32_t vq_msg;
++	uint32_t wake_msg;
+ };
+ 
+ static void cvitek_rproc_mbox_kick_vq(struct work_struct *work)
+@@ -185,6 +186,33 @@
+ }
+ 
+ /* FSBL may leave C906L executing a parked stub. Hold it before ELF load. */
++static ssize_t wake_store(struct device *dev, struct device_attribute *attr,
++                          const char *buf, size_t count)
++{
++    struct rproc *rproc = dev_get_drvdata(dev);
++    struct cvitek_rproc *ddata = rproc->priv;
++    bool send;
++    int ret;
++    (void)attr;
++    ret = kstrtobool(buf, &send);
++    if (ret) return ret;
++    if (mutex_lock_interruptible(&rproc->lock)) return -ERESTARTSYS;
++    if (rproc->state != RPROC_RUNNING ||
++        strcmp(rproc->firmware, "rvnano-freertos.elf") || !ddata->mbox_chan[MBOX_TX]) {
++        ret = -ENODEV;
++    } else if (send) {
++        ddata->wake_msg = 0x52565453;
++        ret = mbox_send_message(ddata->mbox_chan[MBOX_TX], &ddata->wake_msg);
++    } else {
++        /* rtos_ctl ACKs only after a firmware reply: channel was consumed. */
++        mbox_client_txdone(ddata->mbox_chan[MBOX_TX], 0);
++        ret = 0;
++    }
++    mutex_unlock(&rproc->lock);
++    return ret < 0 ? ret : count;
++}
++static DEVICE_ATTR_WO(wake);
++
+ static int cvitek_rproc_prepare(struct rproc *rproc)
+ {
+ 	struct cvitek_rproc *ddata = rproc->priv;
+@@ -202,6 +230,8 @@
+ 
+ 
+ 	if (ddata->mbox_client_vq.dev) {
++        ddata->mbox_client_vq.knows_txdone =
++            !strcmp(rproc->firmware, "rvnano-freertos.elf");
+ 		/*
+ 		* To control a co-processor without IPC mechanism.
+ 		* This driver can be used without mbox and rpmsg.
+@@ -386,6 +416,8 @@
+ 		goto free_clk;
+ 	}
+ 
++    ret = device_create_file(dev, &dev_attr_wake);
++    if (ret) { rproc_del(rproc); goto free_clk; }
+ 	return 0;
+ 
+ free_clk:
+@@ -404,6 +436,7 @@
+ 	struct cvitek_rproc *ddata = rproc->priv;
+ 	int i;
+ 
++    device_remove_file(&pdev->dev, &dev_attr_wake);
+ 	rproc_del(rproc);
+ 
+ 	clk_disable_unprepare(ddata->clk);

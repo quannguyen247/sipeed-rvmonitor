@@ -35,8 +35,8 @@ struct snapshot {
     uint64_t wall_ns, linux_total, linux_idle, c1_elapsed, c1_idle;
     uint64_t npu_time, npu_busy, npu_jobs, self_ns;
     uint64_t clock_hz[3];
-    unsigned clock_enabled[3], c1_state, npu_active;
-    long temperature_mC, memory_total_kB, memory_available_kB;
+    unsigned clock_enabled[3], c1_state, c1_sleep, npu_active;
+    long temperature_mC, memory_total_kB, memory_available_kB, memory_used_kB;
     int linux_valid, c1_valid, npu_valid, npu_loaded;
 };
 static uint64_t now_ns(void) {
@@ -128,8 +128,16 @@ static void sample(struct snapshot *s) {
     if(shared && shared->magic==RV_MAGIC && shared->version==RV_VERSION && shared->timer_hz==RV_TIMER_HZ) {
         for(int i=0;i<50;i++) {
             uint32_t seq=shared->telemetry_seq;rv_fence();if(seq&1)continue;
-            uint64_t elapsed=shared->elapsed_ticks,idle=shared->idle_ticks;unsigned state=shared->state;
-            rv_fence();if(seq==shared->telemetry_seq){s->c1_elapsed=elapsed;s->c1_idle=idle;s->c1_state=state;s->c1_valid=state!=RV_FAULT && state!=RV_BOOT && elapsed>=idle;break;}
+            uint64_t boot=shared->boot_time,idle=shared->idle_ticks,open=shared->idle_since,stamp;
+            unsigned state=shared->state,sleep=shared->sleep_mode;
+            __asm__ volatile("rdtime %0":"=r"(stamp));
+            rv_fence();
+            if(seq==shared->telemetry_seq && stamp>=boot && (!open || stamp>=open)){
+                uint64_t elapsed=stamp-boot;
+                if(open)idle+=stamp-open;
+                s->c1_elapsed=elapsed;s->c1_idle=idle;s->c1_state=state;s->c1_sleep=sleep;
+                s->c1_valid=state!=RV_FAULT && state!=RV_BOOT && elapsed>=idle;break;
+            }
         }
     }
     char buf[256];unsigned version=0;
@@ -149,6 +157,8 @@ static void sample(struct snapshot *s) {
         if(sscanf(line,"MemTotal: %ld kB",&val)==1)s->memory_total_kB=val;
         if(sscanf(line,"MemAvailable: %ld kB",&val)==1)s->memory_available_kB=val;
     }fclose(f);}
+    s->memory_used_kB=s->memory_total_kB-s->memory_available_kB;
+    if(s->memory_used_kB<0)s->memory_used_kB=0;
     struct rusage u;if(!getrusage(RUSAGE_SELF,&u))s->self_ns=((uint64_t)u.ru_utime.tv_sec+u.ru_stime.tv_sec)*1000000000ULL+((uint64_t)u.ru_utime.tv_usec+u.ru_stime.tv_usec)*1000;
     s->wall_ns=now_ns();
 }
@@ -162,30 +172,34 @@ static void json_sample(const struct snapshot *s,double c0,double c1,double npu,
     printf("{\"monotonic_ns\":%"PRIu64",\"temperature_mC\":%ld,\"C0_percent\":",s->wall_ns,s->temperature_mC);number(c0);
     printf(",\"C1_percent\":");number(c1);printf(",\"NPU_command_busy_percent\":");number(npu);
     printf(",\"monitor_percent\":");number(overhead);
-    printf(",\"clock_Hz\":[%"PRIu64",%"PRIu64",%"PRIu64"],\"clock_enabled\":[%u,%u,%u],\"C1_state\":%u,\"C1_elapsed_ticks\":%"PRIu64",\"C1_idle_ticks\":%"PRIu64",\"NPU_jobs\":%"PRIu64",\"NPU_busy_ns\":%"PRIu64",\"NPU_counter_time_ns\":%"PRIu64",\"NPU_active\":%u,\"NPU_loaded\":%s,\"NPU_owned\":%s,\"memory_total_kB\":%ld,\"memory_available_kB\":%ld}\n",
-           s->clock_hz[0],s->clock_hz[1],s->clock_hz[2],s->clock_enabled[0],s->clock_enabled[1],s->clock_enabled[2],s->c1_state,s->c1_elapsed,s->c1_idle,s->npu_jobs,s->npu_busy,s->npu_time,s->npu_active,s->npu_loaded?"true":"false",loaded_here?"true":"false",s->memory_total_kB,s->memory_available_kB);
+    printf(",\"clock_Hz\":[%"PRIu64",%"PRIu64",%"PRIu64"],\"clock_enabled\":[%u,%u,%u],\"C1_state\":%u,\"C1_elapsed_ticks\":%"PRIu64",\"C1_idle_ticks\":%"PRIu64",\"NPU_jobs\":%"PRIu64",\"NPU_busy_ns\":%"PRIu64",\"NPU_counter_time_ns\":%"PRIu64",\"NPU_active\":%u,\"NPU_loaded\":%s,\"NPU_owned\":%s,\"memory_total_kB\":%ld,\"memory_available_kB\":%ld,\"memory_used_kB\":%ld,\"C1_sleep_mode\":%u}\n",
+           s->clock_hz[0],s->clock_hz[1],s->clock_hz[2],s->clock_enabled[0],s->clock_enabled[1],s->clock_enabled[2],s->c1_state,s->c1_elapsed,s->c1_idle,s->npu_jobs,s->npu_busy,s->npu_time,s->npu_active,s->npu_loaded?"true":"false",loaded_here?"true":"false",s->memory_total_kB,s->memory_available_kB,s->memory_used_kB,s->c1_sleep);
 }
-static void row(const char *label,double load,uint64_t hz,unsigned enabled) {
-    printf("%-25s [",label);int bars=load<0?0:(int)(load/5+.5);
+static void row(const char *label,double load,uint64_t hz,const char *state,int color) {
+    printf("%-22s ",label);
+    if(color)printf("\033[36m");
+    putchar('[');int bars=load<0?0:(int)(load/5+.5);
     for(int i=0;i<20;i++)putchar(i<bars?'#':' ');
-    if(load<0)printf("]   N/A  ");else printf("] %6.2f%% ",load);
-    if(hz)printf("%8.3f MHz %s\n",hz/1000000.0,enabled?"":"(gated)");else puts("     N/A clock");
+    printf("]");if(color)printf("\033[0m");
+    if(load<0)printf("   N/A  ");else printf(" %6.1f%% ",load);
+    if(hz)printf("%7.1f ",hz/1000000.0);else printf("    N/A ");
+    printf(" %s\n",state);
 }
-static void display(const struct snapshot *s,double c0,double c1,double npu,double overhead,int tty) {
-    if(tty)printf("\033[H\033[2J");
-    struct utsname u;uname(&u);
-    printf("rvmonitor | Lichee RV Nano SG2002 | Linux %s\n",u.release);
-    if(s->temperature_mC>=0)printf("SoC temperature: %.3f C  ",s->temperature_mC/1000.0);else printf("SoC temperature: N/A  ");
-    printf("RAM available: %.1f / %.1f MiB\n\n",s->memory_available_kB/1024.0,s->memory_total_kB/1024.0);
-    row("CPU1 C0 THead C906 Linux",c0,s->clock_hz[0],s->clock_enabled[0]);
-    row("CPU2 C1 THead C906L RTOS",c1,s->clock_hz[1],s->clock_enabled[1]);
-    row("NPU SG2002 TIU/TDMA",npu,s->clock_hz[2],s->clock_enabled[2]);
-    printf("\nC0: /proc/stat busy. C1: elapsed minus WFI, including ISR/task work.\n");
-    printf("NPU: command-path busy, including DMA/wait; not MAC occupancy or TOPS.\n");
-    printf("Clocks: configured CCF rates; gated engines do not run at that rate.\n");
-    printf("C1 state=%u  NPU jobs=%"PRIu64" active=%u  driver=%s\n",s->c1_state,s->npu_jobs,s->npu_active,loaded_here?"loaded by this tool":"pre-existing");
-    if(overhead>=0)printf("Monitor CPU: %.2f%%  ",overhead);
-    puts("q / Esc / Ctrl+C: exit. Tests: --nputest, --c0test, --c1test");fflush(stdout);
+static void display(const struct snapshot *s,double c0,double c1,double npu,int tty) {
+    if(tty)printf("\033[H\033[1;36m");
+    printf("rvmonitor  /  Lichee RV Nano SG2002");
+    if(tty)printf("\033[0m");
+    struct utsname u;uname(&u);printf("\nLinux %s\n\n",u.release);
+    if(s->temperature_mC>=0)printf("TEMP  %.1f C",s->temperature_mC/1000.0);else printf("TEMP  N/A");
+    printf("    RAM USED  %.1f / %.1f MiB\n\n",s->memory_used_kB/1024.0,s->memory_total_kB/1024.0);
+    puts("CORE                   LOAD                         MHz*   STATE");
+    row("CPU1  C906 / Linux",c0,s->clock_hz[0],"Linux",tty);
+    const char *state=!s->c1_valid?"N/A":s->c1_sleep==2?"Sleep":s->c1_state==RV_RUN?"Run":"Idle";
+    row("CPU2  C906L / RTOS",c1,s->clock_hz[1],state,tty);
+    row("NPU   SG2002",npu,s->clock_hz[2],s->npu_active?"Busy":"Idle",tty);
+    puts("\n* configured clock    q / Esc: exit    --help: commands");
+    if(tty)printf("\033[J");
+    fflush(stdout);
 }
 static int compare_u64(const void *a,const void *b){uint64_t x=*(const uint64_t*)a,y=*(const uint64_t*)b;return (x>y)-(x<y);}
 static int summarize_test(const char *file,int c1,const char *label) {
@@ -271,7 +285,7 @@ int main(int argc,char **argv) {
         double c1=percent(after.c1_idle,before.c1_idle,after.c1_elapsed,before.c1_elapsed,after.c1_valid && before.c1_valid,1);
         double npu=percent(after.npu_busy,before.npu_busy,after.npu_time,before.npu_time,after.npu_valid && before.npu_valid,0);
         double overhead=percent(after.self_ns,before.self_ns,after.wall_ns,before.wall_ns,1,0);
-        if(json)json_sample(&after,c0,c1,npu,overhead);else display(&after,c0,c1,npu,overhead,tty);
+        if(json)json_sample(&after,c0,c1,npu,overhead);else display(&after,c0,c1,npu,tty);
         fflush(stdout);before=after;emitted++;
     }
     return stopped && !quit_key?130:0;
