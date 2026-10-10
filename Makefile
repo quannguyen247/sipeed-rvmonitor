@@ -9,12 +9,17 @@ NPU_SHA256 ?= 99524ffa454fc2646b73320fddbfa0130bab9f250409eced727e9f670844a655
 # Ignore unrelated host environment flags; explicit make CFLAGS=... still works.
 CFLAGS = -march=rv64gc -mabi=lp64d -O2 -static -Wall -Wextra -Werror
 CPPFLAGS += -Iinclude
-.PHONY: all helpers module firmware test clean
+.PHONY: all helpers module firmware test clean FORCE
 all: $(BUILD_DIR)/rvmonitor
 $(BUILD_DIR):
 	mkdir -p "$@"
-$(BUILD_DIR)/rvmonitor: src/rvmonitor.c include/shared.h include/pid.h Makefile | $(BUILD_DIR)
+# Changing the binding must rebuild an existing monitor, not silently keep its old digest.
+FORCE:
+$(BUILD_DIR)/npu.sha256: FORCE | $(BUILD_DIR)
 	@printf '%s\n' '$(NPU_SHA256)' | LC_ALL=C grep -Eq '^[0-9a-f]{64}$$'
+	@printf '%s\n' '$(NPU_SHA256)' > "$@.tmp"
+	@if cmp -s "$@.tmp" "$@"; then rm -f -- "$@.tmp"; else mv -f -- "$@.tmp" "$@"; fi
+$(BUILD_DIR)/rvmonitor: src/rvmonitor.c include/shared.h include/pid.h Makefile $(BUILD_DIR)/npu.sha256 | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) '-DRVMON_NPU_SHA256="$(NPU_SHA256)"' "$<" -o "$@"
 	$(STRIP) --strip-all "$@"
 helpers: $(BUILD_DIR)/rtos_ctl $(BUILD_DIR)/linux_pid

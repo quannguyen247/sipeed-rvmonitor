@@ -31,6 +31,7 @@
   "upstream": {
     "FreeRTOS_BSP": "sipeed/LicheeRV-Nano-Build@d4003f15b35d43ad4842f427050ab2bba0114fa5",
     "osdrv": "scpcom/sophgo-osdrv@3885436de4bcd2976652c762f4273f210d3c2887",
-    "NPU_engine": "sophgo/cviruntime@ef8044988c2b4a5d491125d13e6f048b5f8a1389"
+    "NPU_engine": "sophgo/cviruntime@ef8044988c2b4a5d491125d13e6f048b5f8a1389",
+    "remoteproc_baseline": "scpcom/sophgo-sg200x-debian@6f102cbb1f490046603e5a458d81e244e00f4bbd"
   }
 }

@@ -16,6 +16,8 @@ The default NPU digest binds the monitor to the validated telemetry module.
 Do not change a digest to bypass an ABI check. Builds with a different compiler,
 libc, kernel config or SDK may have different bytes and need fresh validation.
 These commands build on the PC; they do not install anything onto the board.
+The NPU binding stamp rebuilds an existing monitor when NPU_SHA256 changes.
+Use make -B after changing toolchain/CFLAGS, which are not tracked in that stamp.
 
 ## NPU telemetry module
 
@@ -34,14 +36,16 @@ make NPU_SHA256=THE_REVIEWED_MODULE_SHA256 CROSS_COMPILE=/path/to/riscv64-unknow
 The helper copies only into build/, applies the patch there and builds an
 out-of-tree module. Its output is build/soph_tpu-monitor.ko, whose module name
 is soph_tpu. It never modifies the supplied BSP/kernel or loads the result.
-It requires the original source; clean or choose a fresh build directory before
-rebuilding the patch stage. No force-load or force-unload is supported.
+For a different kernel/compiler, remove build/npu-module before rebuilding the
+patch stage so previous objects cannot be reused. No force-load or force-unload is supported.
 
 ## CPU1 firmware and kernel integration
 
 See [FreeRTOS support](../support/freertos/README.md). Apply prepare.patch then
 wake.patch from kernel/remoteproc to the matching kernel source (git apply -p1).
-Build the module against the same kernel configuration and Module.symvers.
+The [baseline remoteproc source and pin](../kernel/remoteproc/README.md) are
+documented separately. Build the module against the same kernel configuration
+and Module.symvers.
 The GPL-2.0-only patches keep the auxiliary reset asserted during ELF load and
 add the firmware-guarded wake mailbox attribute. The repository does not replace
 the device tree, FIP, bootloader, kernel image or vendor package set.
@@ -55,6 +59,8 @@ the device tree, FIP, bootloader, kernel image or vendor package set.
 | build/rtos_ctl | /opt/rvnano/freertos/rtos_ctl |
 | build/linux_pid | /opt/rvnano/freertos/linux_pid |
 | build/freertos/rvnano-freertos.elf | /lib/firmware/rvnano-freertos.elf |
+| support/freertos/rvnano-freertos.sh (mode 0755) | /usr/local/sbin/rvnano-freertos |
+| support/freertos/rvnano-freertos.service | /etc/systemd/system/rvnano-freertos.service |
 | External validated INT8 engine | /opt/rvnano-npu/tensor-mul-selftest |
 
 The two Linux helpers can be rebuilt from included source. The INT8 engine is

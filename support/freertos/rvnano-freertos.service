@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Nguyen Dong Quan
 [Unit]
 Description=FreeRTOS PID test firmware on isolated RVNano C906L
 After=local-fs.target systemd-modules-load.service

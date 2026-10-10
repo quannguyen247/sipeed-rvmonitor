@@ -20,6 +20,14 @@ identical to the validated board binary. Only license comments were added to
 the final monitor source. The recorded tests were not rerun by installing a
 historical revision or rebooting the board for this repository import.
 
+The reorganized firmware also built successfully after checking all 47 pinned
+vendor files. The NPU module builder applied the telemetry patch and produced
+an 81,464-byte module using the prepared kernel. That module has a different
+fingerprint from the installed one and was **not loaded onto the board**.
+Five warnings remain in unchanged vendor code (three printf formats and two
+unused variables). The monitor and Linux-helper builds passed -Werror.
+These cross-builds verify compilation, not a new firmware/module runtime test.
+
 ## Recorded board run, 2026-10-10
 
 The prepared SG2002 system used Linux 5.10.271-rvnano #4, FreeRTOS 10.4.6 and
