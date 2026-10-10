@@ -1,0 +1,100 @@
+SPDX-License-Identifier: GPL-2.0-or-later
+Modifications: Copyright 2026 Nguyen Dong Quan
+Upstream: Cvitek Co., Ltd. 2019-2021; retained under GPL-2.0-or-later.
+
+--- a/common/cvi_tpu_interface.c
++++ b/common/cvi_tpu_interface.c
+@@ -42,6 +42,7 @@
+ #endif
+ #include <linux/proc_fs.h>
+ #include <linux/seq_file.h>
++#include <linux/timekeeping.h>
+ 
+ #if (KERNEL_VERSION(5, 10, 0) <= LINUX_VERSION_CODE)
+ #include <linux/dma-map-ops.h>
+@@ -147,6 +148,60 @@
+ 	return (uint32_t)((end->tv_sec - start->tv_sec)*1000000 + (end->tv_nsec - start->tv_nsec)/1000);
+ }
+ 
++/* Read-only telemetry: serialized command path including TIU/TDMA wait.
++ * No profiling timer, clock/voltage change, or inferred arithmetic occupancy. */
++static DEFINE_SPINLOCK(rvmon_lock);
++static u64 rvmon_busy_ns, rvmon_start_ns, rvmon_jobs;
++static bool rvmon_active;
++
++static void rvmon_begin(void)
++{
++	unsigned long flags;
++	spin_lock_irqsave(&rvmon_lock, flags);
++	rvmon_start_ns = ktime_get_ns();
++	rvmon_active = true;
++	spin_unlock_irqrestore(&rvmon_lock, flags);
++}
++
++static void rvmon_end(void)
++{
++	unsigned long flags;
++	spin_lock_irqsave(&rvmon_lock, flags);
++	rvmon_busy_ns += ktime_get_ns() - rvmon_start_ns;
++	rvmon_jobs++;
++	rvmon_active = false;
++	spin_unlock_irqrestore(&rvmon_lock, flags);
++}
++
++static int rvmon_show(struct seq_file *m, void *v)
++{
++	u64 busy, now, jobs;
++	bool active;
++	unsigned long flags;
++	spin_lock_irqsave(&rvmon_lock, flags);
++	now = ktime_get_ns();
++	busy = rvmon_busy_ns + (rvmon_active ? now - rvmon_start_ns : 0);
++	jobs = rvmon_jobs;
++	active = rvmon_active;
++	spin_unlock_irqrestore(&rvmon_lock, flags);
++	seq_printf(m, "version=1 now_ns=%llu busy_ns=%llu jobs=%llu active=%u\n",
++		(unsigned long long)now, (unsigned long long)busy,
++		(unsigned long long)jobs, active ? 1 : 0);
++	return 0;
++}
++
++static int rvmon_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, rvmon_show, PDE_DATA(inode));
++}
++
++static const struct proc_ops rvmon_ops = {
++	.proc_open = rvmon_open,
++	.proc_read = seq_read,
++	.proc_lseek = seq_lseek,
++	.proc_release = single_release,
++};
++
+ #define SUAGE_LOOP 2
+ #if (KERNEL_VERSION(4, 15, 0) <= LINUX_VERSION_CODE)
+ static void tpu_profile_timer_handler(struct timer_list *t)
+@@ -564,6 +619,7 @@
+ #endif
+ 
+ 	mutex_lock(&ndev->dev_lock);
++	rvmon_begin();
+ 	platform_tpu_init(ndev);
+ 
+ 	if (info.enable_usage_profiling) {
+@@ -607,6 +663,7 @@
+ 	} else {
+ 		platform_tpu_deinit(ndev);
+ 	}
++	rvmon_end();
+ 	mutex_unlock(&ndev->dev_lock);
+ 
+ 	return ret;
+@@ -1251,6 +1308,8 @@
+ 	tpu_proc_dir = proc_mkdir("tpu", NULL);
+ 	if (proc_create_data("usage_profiling", 0644, tpu_proc_dir, &tpu_proc_ops, ndev) == NULL)
+ 		pr_err("tpu usage_profiling proc creation failed\n");
++	if (!proc_create_data("rvmonitor", 0444, tpu_proc_dir, &rvmon_ops, ndev))
++		pr_err("tpu rvmonitor proc creation failed\n");
+ 
+ 	pr_debug("===cvi_tpu_probe end\n");
+ 	return 0;
