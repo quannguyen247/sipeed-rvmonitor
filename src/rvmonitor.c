@@ -181,12 +181,12 @@ static const char *c1_state(const struct snapshot *s) {
 static const char *npu_state(const struct snapshot *s,double load) {
     return s->npu_active?"Busy":load<0?"N/A":load>0?"Busy":"Idle";
 }
-static void json_sample(const struct snapshot *s,double c0,double c1,double npu,double overhead) {
+static void json_sample(const struct snapshot *s,double c0,double c1,double npu,double overhead,unsigned interval) {
     printf("{\"monotonic_ns\":%"PRIu64",\"temperature_mC\":%ld,\"C0_percent\":",s->wall_ns,s->temperature_mC);number(c0);
     printf(",\"C1_percent\":");number(c1);printf(",\"NPU_command_busy_percent\":");number(npu);
     printf(",\"monitor_percent\":");number(overhead);
-    printf(",\"clock_Hz\":[%"PRIu64",%"PRIu64",%"PRIu64"],\"clock_enabled\":[%u,%u,%u],\"C1_state\":%u,\"C1_elapsed_ticks\":%"PRIu64",\"C1_idle_ticks\":%"PRIu64",\"NPU_jobs\":%"PRIu64",\"NPU_busy_ns\":%"PRIu64",\"NPU_counter_time_ns\":%"PRIu64",\"NPU_active\":%u,\"NPU_loaded\":%s,\"NPU_owned\":%s,\"memory_total_kB\":%ld,\"memory_available_kB\":%ld,\"memory_used_kB\":%ld,\"C1_sleep_mode\":%u,\"CPU0_state\":\"%s\",\"CPU1_state\":\"%s\",\"NPU_state\":\"%s\"}\n",
-           s->clock_hz[0],s->clock_hz[1],s->clock_hz[2],s->clock_enabled[0],s->clock_enabled[1],s->clock_enabled[2],s->c1_state,s->c1_elapsed,s->c1_idle,s->npu_jobs,s->npu_busy,s->npu_time,s->npu_active,s->npu_loaded?"true":"false",loaded_here?"true":"false",s->memory_total_kB,s->memory_available_kB,s->memory_used_kB,s->c1_sleep,c0_state(c0),c1_state(s),npu_state(s,npu));
+    printf(",\"clock_Hz\":[%"PRIu64",%"PRIu64",%"PRIu64"],\"clock_enabled\":[%u,%u,%u],\"C1_state\":%u,\"C1_elapsed_ticks\":%"PRIu64",\"C1_idle_ticks\":%"PRIu64",\"NPU_jobs\":%"PRIu64",\"NPU_busy_ns\":%"PRIu64",\"NPU_counter_time_ns\":%"PRIu64",\"NPU_active\":%u,\"NPU_loaded\":%s,\"NPU_owned\":%s,\"memory_total_kB\":%ld,\"memory_available_kB\":%ld,\"memory_used_kB\":%ld,\"C1_sleep_mode\":%u,\"CPU0_state\":\"%s\",\"CPU1_state\":\"%s\",\"NPU_state\":\"%s\",\"sample_interval_ms\":%u}\n",
+           s->clock_hz[0],s->clock_hz[1],s->clock_hz[2],s->clock_enabled[0],s->clock_enabled[1],s->clock_enabled[2],s->c1_state,s->c1_elapsed,s->c1_idle,s->npu_jobs,s->npu_busy,s->npu_time,s->npu_active,s->npu_loaded?"true":"false",loaded_here?"true":"false",s->memory_total_kB,s->memory_available_kB,s->memory_used_kB,s->c1_sleep,c0_state(c0),c1_state(s),npu_state(s,npu),interval);
 }
 static void row(const char *label,double load,uint64_t hz,const char *state,int color) {
     printf("%-22s  ",label);
@@ -200,8 +200,9 @@ static void row(const char *label,double load,uint64_t hz,const char *state,int 
     if(hz)printf("%8.1f  ",hz/1000000.0);else printf("%8s  ","N/A");
     printf("%s\n",state);
 }
-static void display(const struct snapshot *s,double c0,double c1,double npu,int tty) {
-    if(tty)printf("\033[H\033[1;36m");
+static void display(const struct snapshot *s,double c0,double c1,double npu,int tty,unsigned interval,int settings) {
+    /* Erase the previous frame: shorter state/number strings must not leave suffixes. */
+    if(tty)printf("\033[H\033[2J\033[1;36m");
     printf("rvmonitor  /  Lichee RV Nano SG2002");
     if(tty)printf("\033[0m");
     struct utsname u;uname(&u);printf("\nLinux %s\n\n",u.release);
@@ -211,7 +212,13 @@ static void display(const struct snapshot *s,double c0,double c1,double npu,int 
     row("CPU0  C906 / Linux",c0,s->clock_hz[0],c0_state(c0),tty);
     row("CPU1  C906L / RTOS",c1,s->clock_hz[1],c1_state(s),tty);
     row("NPU   SG2002",npu,s->clock_hz[2],npu_state(s,npu),tty);
-    puts("\n* configured clock    q / Esc: exit    --help: commands");
+    printf("\n* configured clock    Sample: %u ms\n",interval);
+    if(settings) {
+        puts("Sampling settings (this session)\n"
+             "1: 100 ms   2: 250 ms   3: 500 ms\n"
+             "4: 1 s      5: 2 s      6: 5 s\n"
+             "1-6: select    s / Esc: back    q: exit");
+    }else puts("s: sampling settings    q / Esc: exit");
     if(tty)printf("\033[J");
     fflush(stdout);
 }
@@ -257,14 +264,16 @@ static int cpu_test(int c1) {
 static void usage(void) {
     puts("rvmonitor [--once | --samples N] [--json] [--interval MS]\n"
          "rvmonitor --nputest | --c0test | --c1test\n"
-         "Root required. Default refresh 250 ms. CPU0=C0/Linux; CPU1=C1/FreeRTOS.\n"
+         "Root required. Default sampling 1000 ms. CPU0=C0/Linux; CPU1=C1/FreeRTOS.\n"
+         "Interactive: s opens sampling settings (100/250/500/1000/2000/5000 ms).\n"
+         "Settings apply to this session; --interval MS selects 100..10000 ms.\n"
          "CPU tests can run in another terminal while the monitor is open.\n"
          "One test at a time. Close the monitor before --nputest.\n"
          "Quit with q/Esc/Ctrl+C; unload only a driver this invocation loaded.\n"
          "Pre-existing/active NPU drivers are retained. No clock or voltage changes.");
 }
 int main(int argc,char **argv) {
-    unsigned interval=250,limit=0;int json=0,test=0;
+    unsigned interval=1000,limit=0;int json=0,test=0;
     for(int i=1;i<argc;i++) {
         if(!strcmp(argv[i],"--help") || !strcmp(argv[i],"-h")){usage();return 0;}
         else if(!strcmp(argv[i],"--once"))limit=1;
@@ -290,23 +299,58 @@ int main(int argc,char **argv) {
     if(ensure_npu())return 1;
     if(test==1){char *const args[]={"/usr/local/bin/rvnano-npu-selftest",NULL};return run(args,0);}
     int tty=!json && isatty(STDIN_FILENO) && isatty(STDOUT_FILENO);
+    /* One buffered flush per frame avoids exposing a half-drawn screen. */
+    if(tty)setvbuf(stdout,NULL,_IOFBF,2048);
     if(tty && !tcgetattr(STDIN_FILENO,&saved_terminal)) {
         struct termios raw=saved_terminal;raw.c_lflag&=~(ICANON|ECHO);raw.c_cc[VMIN]=0;raw.c_cc[VTIME]=0;
         if(!tcsetattr(STDIN_FILENO,TCSANOW,&raw)){terminal_active=1;printf("\033[?1049h\033[?25l");}
     }
     struct snapshot before,after;sample(&before);unsigned emitted=0;
+    double c0=-1,c1=-1,npu=-1;int settings=0;
+    uint64_t next=before.wall_ns+(uint64_t)interval*1000000ULL;
+    if(tty)display(&before,c0,c1,npu,tty,interval,settings);
     while(!stopped && (!limit || emitted<limit)) {
-        if(tty){struct pollfd p={STDIN_FILENO,POLLIN,0};int ready=poll(&p,1,(int)interval);
-            if(ready>0){char keys[32];ssize_t n=read(STDIN_FILENO,keys,sizeof(keys));if(n<=0)stopped=1;for(ssize_t i=0;i<n;i++)if(keys[i]=='q' || keys[i]=='Q' || keys[i]==27){stopped=1;quit_key=1;}}
-        }else{struct timespec delay={interval/1000,(interval%1000)*1000000L};while(nanosleep(&delay,&delay) && errno==EINTR && !stopped){};}
+        uint64_t current=now_ns();
+        uint64_t wait=next>current?next-current:0;
+        if(tty) {
+            struct pollfd p={STDIN_FILENO,POLLIN,0};
+            int ready=poll(&p,1,(int)((wait+999999)/1000000));
+            if(ready>0) {
+                char keys[32];ssize_t n=read(STDIN_FILENO,keys,sizeof(keys));
+                int changed=0,redraw=0;
+                if(n<=0)stopped=1;
+                for(ssize_t i=0;i<n;i++) {
+                    char key=keys[i];
+                    if(key=='q' || key=='Q'){stopped=1;quit_key=1;break;}
+                    if(key==27){if(settings){settings=0;redraw=1;}else{stopped=1;quit_key=1;break;}}
+                    else if(key=='s' || key=='S'){settings=!settings;redraw=1;}
+                    else if(settings && key>='1' && key<='6') {
+                        static const unsigned presets[]={100,250,500,1000,2000,5000};
+                        interval=presets[key-'1'];settings=0;changed=1;redraw=1;
+                    }
+                }
+                if(stopped)break;
+                if(changed) {
+                    /* Restart the measurement window at the newly chosen interval. */
+                    sample(&before);c0=c1=npu=-1;
+                    next=before.wall_ns+(uint64_t)interval*1000000ULL;
+                }
+                if(redraw)display(&before,c0,c1,npu,tty,interval,settings);
+            }
+        }else {
+            struct timespec delay={(time_t)(wait/1000000000ULL),(long)(wait%1000000000ULL)};
+            while(nanosleep(&delay,&delay) && errno==EINTR && !stopped){};
+        }
         if(stopped)break;
+        if(now_ns()<next)continue;
         sample(&after);
-        double c0=percent(after.linux_idle,before.linux_idle,after.linux_total,before.linux_total,after.linux_valid && before.linux_valid,1);
-        double c1=percent(after.c1_idle,before.c1_idle,after.c1_elapsed,before.c1_elapsed,after.c1_valid && before.c1_valid,1);
-        double npu=percent(after.npu_busy,before.npu_busy,after.npu_time,before.npu_time,after.npu_valid && before.npu_valid,0);
+        c0=percent(after.linux_idle,before.linux_idle,after.linux_total,before.linux_total,after.linux_valid && before.linux_valid,1);
+        c1=percent(after.c1_idle,before.c1_idle,after.c1_elapsed,before.c1_elapsed,after.c1_valid && before.c1_valid,1);
+        npu=percent(after.npu_busy,before.npu_busy,after.npu_time,before.npu_time,after.npu_valid && before.npu_valid,0);
         double overhead=percent(after.self_ns,before.self_ns,after.wall_ns,before.wall_ns,1,0);
-        if(json)json_sample(&after,c0,c1,npu,overhead);else display(&after,c0,c1,npu,tty);
+        if(json)json_sample(&after,c0,c1,npu,overhead,interval);else display(&after,c0,c1,npu,tty,interval,settings);
         fflush(stdout);before=after;emitted++;
+        next=after.wall_ns+(uint64_t)interval*1000000ULL;
     }
     return stopped && !quit_key?130:0;
 }
