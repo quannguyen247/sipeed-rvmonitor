@@ -1,0 +1,36 @@
+{
+  "history": "Feature import from real saved snapshots; publication commits use current dates.",
+  "monitor_snapshots": [
+    {
+      "phase": "base",
+      "original_source_sha256": "c2a57d245420bf22a3f4570b80f7d1259567b25a471ab5941af937f3022769a8",
+      "original_bytes": 16735
+    },
+    {
+      "phase": "interrupt-idle",
+      "original_source_sha256": "f67955cd866cec3aa31437c04c2b72730fcf1dfcc3a35bc52dd072344d8c6837",
+      "original_bytes": 17059
+    },
+    {
+      "phase": "aligned-ui",
+      "original_source_sha256": "7bd8f23e3542bff23bfdfe87678702c88f9c87b2214361c4ce2b431e3f8b2ffd",
+      "original_bytes": 18232
+    },
+    {
+      "phase": "sampling",
+      "original_source_sha256": "2fec033845da8d45e83ae2143e496e1162a1eb8d9a08194675edfd1a88ca7eeb",
+      "original_bytes": 20397
+    },
+    {
+      "phase": "shared-lifecycle",
+      "original_source_sha256": "7ac7a68a92caff9ea2b4845321cf169c11c6e1ef1129d973eef97b43c90bee29",
+      "original_bytes": 24893
+    }
+  ],
+  "final_changes": "Apache header only; monitor logic unchanged from the validated snapshot.",
+  "upstream": {
+    "FreeRTOS_BSP": "sipeed/LicheeRV-Nano-Build@d4003f15b35d43ad4842f427050ab2bba0114fa5",
+    "osdrv": "scpcom/sophgo-osdrv@3885436de4bcd2976652c762f4273f210d3c2887",
+    "NPU_engine": "sophgo/cviruntime@ef8044988c2b4a5d491125d13e6f048b5f8a1389"
+  }
+}
