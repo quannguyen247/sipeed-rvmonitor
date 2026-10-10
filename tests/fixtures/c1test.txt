@@ -1,0 +1,7 @@
+{"magic":1381389395,"version":3,"state":4,"hart":0,"tick_hz":1000,"timer_hz":25000000,"ticks":14511534,"completed":1000,"assert_line":0,"fault_cause":0,"fault_pc":0}
+{"sleep_mode":2,"timer_irqs":17000,"wake_irqs":27}
+{"magic":1381389395,"version":3,"state":4,"hart":0,"tick_hz":1000,"timer_hz":25000000,"ticks":14713106,"completed":1000,"assert_line":0,"fault_cause":0,"fault_pc":0}
+{"sleep_mode":2,"timer_irqs":17000,"wake_irqs":28}
+{"count":1000,"checksum":902335789,"stack_free_words":422,"timebase_hz":25000000}
+C1 FreeRTOS: n=1000, wake median/p99/max 18.24/20.24/21.08 us, max finish 21.12 us, late1ms=0
+C1: expected PID/plant checksum=902335789 (same Q16 oracle). PASS

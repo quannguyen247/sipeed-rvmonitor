@@ -1,0 +1,1285 @@
+[?1049h[?25l[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.3 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[                    ][0m     N/A    1050.0  N/A
+CPU1  C906L / RTOS      [36m[                    ][0m     N/A     786.4  Idle
+NPU   SG2002            [36m[                    ][0m     N/A     700.0  N/A
+
+* configured clock    Sample: 1000 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.3 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[                    ][0m    2.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 1000 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   92.1%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 1000 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.4 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[                    ][0m     N/A    1050.0  N/A
+CPU1  C906L / RTOS      [36m[                    ][0m     N/A     786.4  Idle
+NPU   SG2002            [36m[                    ][0m     N/A     700.0  N/A
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.4 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m    9.1%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.7 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  78.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[################    ][0m   81.8%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.7 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   91.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  78.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[########            ][0m   41.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.7 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.7 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##############      ][0m   70.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.7%     700.0  Running
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.9%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#################   ][0m   83.3%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.9%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.7 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[################    ][0m   81.8%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.0 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   91.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.4 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##########          ][0m   50.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[###############     ][0m   75.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.4 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#################   ][0m   83.3%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.0 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.9%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##########          ][0m   50.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    1.0%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  81.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    4.0%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  81.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[################    ][0m   80.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    3.9%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  82.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    3.9%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  82.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[################    ][0m   81.8%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    4.0%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  82.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    4.1%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  82.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[################    ][0m   81.8%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    4.1%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  82.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.9%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    4.1%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.3 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[###########         ][0m   54.5%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    4.0%     786.4  Running
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#####               ][0m   27.3%    1050.0  Running
+CPU1  C906L / RTOS      [36m[#                   ][0m    3.5%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#################   ][0m   83.3%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[################    ][0m   81.8%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.3 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  80.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####                ][0m   18.2%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[###                 ][0m   16.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[###                 ][0m   16.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[                    ][0m    0.0%    1050.0  Idle
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#####               ][0m   23.1%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####                ][0m   20.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[                    ][0m    0.0%    1050.0  Idle
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#####               ][0m   25.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[                    ][0m    0.0%    1050.0  Idle
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[###                 ][0m   16.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   11.1%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m    9.1%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####                ][0m   18.2%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##                  ][0m   10.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  78.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.0 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.3 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#################   ][0m   83.3%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.9%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.0 C    RAM USED  77.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##########          ][0m   50.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.7 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  78.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[#############       ][0m   66.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  78.8 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  74.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  74.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.0 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   90.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.4 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[##################  ][0m   91.7%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.6 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  75.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[############        ][0m   60.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.2 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  77.9 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  78.5 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.1 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[H[2J[1;36mrvmonitor  /  Lichee RV Nano SG2002[0m
+Linux 5.10.271-rvnano
+
+TEMP  57.4 C    RAM USED  79.4 / 229.0 MiB
+
+CORE                    LOAD                         %      MHz*  STATE
+CPU0  C906 / Linux      [36m[####################][0m  100.0%    1050.0  Running
+CPU1  C906L / RTOS      [36m[                    ][0m    0.0%     786.4  Idle
+NPU   SG2002            [36m[                    ][0m    0.0%     700.0  Idle
+
+* configured clock    Sample: 100 ms
+s: sampling settings    q / Esc: exit
+[J[?25h[?1049l

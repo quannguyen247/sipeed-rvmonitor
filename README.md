@@ -15,7 +15,7 @@ CPU0  C906 / Linux      [#############       ]   63.6%    1050.0  Running
 CPU1  C906L / RTOS      [                    ]    0.0%     786.4  Idle
 NPU   SG2002            [                    ]    0.0%     700.0  Idle
 
-* configured clock    Sample: 1000 ms
+* configured clock    Sample: 100 ms
 s: sampling settings    q / Esc: exit
 ```
 
