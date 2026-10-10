@@ -1,1 +1,0 @@
-NPU: 4 INT8 cases, 121212 values match CPU; IRQ delta=12. PASS

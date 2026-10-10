@@ -1,101 +1,69 @@
-# sipeed-rvmonitor
+# RVMonitor for Sipeed Lichee RV Nano
 
-A lightweight C terminal monitor for the **Sipeed Lichee RV Nano / SG2002**.
-Watch the Linux C906 (CPU0), FreeRTOS C906L (CPU1) and NPU command activity,
-with temperature, RAM used, configured clocks, self-tests and JSONL logging.
+A small C terminal monitor for SG2002: CPU0 (Linux C906), CPU1 (FreeRTOS
+C906L), NPU activity, temperature, RAM used and configured clock rates.
+Includes live sampling, CPU/NPU self-tests and JSONL logging. The measured
+musl static executable is 74 KiB; no curses or monitor daemon is needed.
 
-```text
-rvmonitor  /  Lichee RV Nano SG2002
-Linux 5.10.271-rvnano
+## Build and install
 
-TEMP  57.4 C    RAM USED  77.5 / 229.0 MiB
+The supported board runs Ubuntu 22.04.5 with the prepared
+`5.10.271-rvnano #4` kernel, NPU telemetry module and FreeRTOS ABI v3.
+For the required driver/firmware files, see [board/README.md](board/README.md).
 
-CORE                    LOAD                         %      MHz*  STATE
-CPU0  C906 / Linux      [#############       ]   63.6%    1050.0  Running
-CPU1  C906L / RTOS      [                    ]    0.0%     786.4  Idle
-NPU   SG2002            [                    ]    0.0%     700.0  Idle
+On the board, install GCC, make and static libc development files, then run:
 
-* configured clock    Sample: 100 ms
-s: sampling settings    q / Esc: exit
+```sh
+sudo apt install gcc make libc6-dev git
+git clone https://github.com/quannguyen247/sipeed-rvmonitor.git
+cd sipeed-rvmonitor
+make
+sudo make install
+sudo rvmonitor
 ```
 
-The snapshot above is an example frame from the recorded board test, not a live feed.
-The supported system is the prepared `5.10.271-rvnano #4` stack with ABI v3;
-see [compatibility](docs/compatibility.md) before using a different image.
+`make install` installs the monitor and the two CPU test helpers. It does not
+replace the kernel or start firmware. To cross-compile on a PC instead:
 
-## Run
+```sh
+make CROSS_COMPILE=/path/to/riscv64-unknown-linux-musl-
+```
 
-Run as root on a prepared board:
+Use `make -B` after changing compiler or build flags. Run `make test` for the
+host rendering, JSON, counter and PID checks.
+
+## Usage
 
 ```sh
 rvmonitor
 rvmonitor --nputest
 rvmonitor --c0test
 rvmonitor --c1test
-rvmonitor --logging
-rvmonitor --logging "/root/log.jsonl"
-rvmonitor --logging "/root/log.jsonl" 20
 rvmonitor --logging "/root/log.jsonl" 20 500
 rvmonitor --help
 ```
 
+Run as root. The dashboard samples every **1 second**. Press `s` to change
+the interval; `q` or Esc exits. Multiple dashboards can run alongside a test.
+All rows use **Running / Idle / N/A**.
+
 `--logging ["PATH" [SAMPLES [INTERVAL_MS]]]` defaults to `/root/rvmonitor_log`,
-10 samples, and 1000 ms. Interval is in **milliseconds**. Quote paths as shown;
-the shell passes one path argument and removes quote syntax. Logs are JSONL,
-one sample per line. A repeat run overwrites a regular file; concurrent writers
-to that same file are refused before truncation. Parent directories must exist.
+10 samples and 1000 ms. Quote the path; parent directories must exist.
+Each sample is one JSON line. A repeat run overwrites the file.
 
-The dashboard defaults to one sample per second. Press `s` for 100/250/500/1000/
-2000/5000 ms in this session; `q` or Esc exits. Esc inside settings returns.
-All three rows use **Running / Idle / N/A**. The FreeRTOS numeric `C1_state`
-in raw logs is a separate ABI field, not an additional display state.
+NPU load measures command-path busy time, including DMA and waits; MHz shows
+the configured clock. CPU1 Idle means interrupt-driven WFI. The final monitor
+unloads an idle NPU driver only if the monitor group loaded it.
 
-Open multiple dashboards and loggers at different paths. A self-test can run
-from another SSH terminal while they remain open; self-tests alone are serialized.
-The last cooperating invocation unloads a driver the group loaded when safe.
-The NPU wrapper is inside the C monitor; its validated external tensor engine
-remains an explicit dependency. Normal monitoring runs no inference loop.
+## Source layout
 
-## Build
-
-```sh
-git clone https://github.com/quannguyen247/sipeed-rvmonitor.git
-cd sipeed-rvmonitor
-make CROSS_COMPILE=/path/to/riscv64-unknown-linux-musl-
-make helpers CROSS_COMPILE=/path/to/riscv64-unknown-linux-musl-
-make test
-```
-
-The measured static binary is about **74 KiB**. There is no curses dependency
-or resident monitor daemon. [Build and prepared-board layout](docs/building.md)
-describe the external kernel/BSP, optional firmware and NPU dependencies.
-Build targets do not install, flash, reboot or load a module onto a board.
-
-## Repository layout
-
-| Path | Purpose |
-|---|---|
-| src/ and include/ | Monitor, shared ABI and integer PID oracle |
-| kernel/npu/ | GPL telemetry patch and module build recipe |
-| kernel/remoteproc/ | GPL auxiliary reset/wake integration patches |
-| support/freertos/ | Custom application, Linux helpers and pinned-input build |
-| scripts/ | Optional module builder using supplied external source trees |
-| tests/ | Offline terminal/PID regression and sanitized fixtures |
-| docs/ | Measurement definitions, compatibility, development and validation |
-
-## Evidence and limits
-
-See [measurement definitions](docs/architecture.md), [validation](docs/validation.md)
-and [development stages](docs/development.md). NPU percentage measures command-path
-busy time including DMA/wait; it is not TOPS. MHz is the configured CCF rate.
-CPU1 idle means WFI, not zero electrical power. Finite PID tests do not establish
-hard real-time bounds for all workloads. The repository import does not imply a
-fresh board installation or reboot.
+| Path | Contents |
+| --- | --- |
+| [src/](src/) | Monitor, shared ABI and CPU test helpers |
+| [board/](board/) | Optional FreeRTOS firmware and kernel patches |
+| [tests/](tests/) | Host regression tests |
 
 ## License
 
-Copyright **2026 Nguyen Dong Quan**. Original project code and documentation are
-[Apache-2.0](LICENSE). Kernel patches retain GPL-2.0-only or GPL-2.0-or-later;
-the SDK startup adaptation retains MIT. [NOTICE](NOTICE) and [LICENSES](LICENSES)
-preserve those boundaries. External SDK sources/libraries are not relicensed or
-redistributed here. This is an independent community project.
+Copyright **2026 Nguyen Dong Quan**. Project code is [Apache-2.0](LICENSE).
+Vendor-derived kernel patches and startup retain GPL/MIT; see [NOTICE](NOTICE).

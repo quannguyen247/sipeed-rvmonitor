@@ -13,8 +13,8 @@ out=root/'build/npu-module';out.mkdir(parents=True,exist_ok=True)
 upstream=osdrv/'interdrv/tpu'
 if not (upstream/'common/cvi_tpu_interface.c').is_file():raise SystemExit('OSDRV_DIR lacks interdrv/tpu')
 shutil.copytree(upstream,out,dirs_exist_ok=True)
-subprocess.run(['patch','--batch','--forward','-p1','-i',str(root/'kernel/npu/telemetry.patch')],cwd=out,check=True)
-shutil.copy2(root/'kernel/npu/Makefile',out/'Makefile')
+subprocess.run(['patch','--batch','--forward','-p1','-i',str(root/'board/npu.patch')],cwd=out,check=True)
+shutil.copy2(root/'board/Makefile.npu',out/'Makefile')
 subprocess.run(['make','-C',str(kernel),'O='+str(kbuild),'M='+str(out),'ARCH=riscv',
                 'CROSS_COMPILE='+prefix,'OSDRV_DIR='+str(osdrv),'-j2','modules'],check=True)
 module=root/'build/soph_tpu-monitor.ko';shutil.copy2(out/'soph_tpu.ko',module)
